@@ -1,3 +1,0 @@
-/home/joachim/Programmering/advent_of_code/aoc2022/utils/cmake-build-debug/CMakeFiles/utils.dir
-/home/joachim/Programmering/advent_of_code/aoc2022/utils/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/joachim/Programmering/advent_of_code/aoc2022/utils/cmake-build-debug/CMakeFiles/rebuild_cache.dir
