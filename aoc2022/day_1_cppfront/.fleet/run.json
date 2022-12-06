@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "cpp2 build",
+            "program": "cppfront",
+            "args": ["main.cpp2"],
+        },
+        {
+            "type": "command",
+            "name": "buil cpp",
+            "program": "g++",
+            "args": ["main.cpp", "-std=c++20", "-o", "main"],
+        },
+        {
+            "type": "command",
+            "name": "run",
+            "program": "..\\main.exe",
+        },
+    ]
+}
