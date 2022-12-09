@@ -33,3 +33,7 @@
 
 .idea
 cmake-build-debug
+
+input.txt
+crates.txt
+moves.txt
