@@ -3,4 +3,4 @@ project(day_9)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(day_9 main.cpp)
+add_executable(day_9 main.cpp ../utils/library.cpp)
