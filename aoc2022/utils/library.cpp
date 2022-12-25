@@ -15,6 +15,20 @@ auto readInputToStringVector(const std::string& path) -> std::vector<std::string
     return data;
 }
 
+auto split(const std::string& string, const std::string& delimiter) -> std::tuple<std::string, std::string> {
+    std::string left, right;
+
+    auto delim = string.find(delimiter);
+
+    if (delim == std::string::npos)
+        return std::make_tuple(string, "");
+
+    left = string.substr(0, delim);
+    right = string.substr(left.size()+delimiter.size(), string.size() - left.size());
+
+    return std::make_tuple(left, right);
+}
+
 auto splitString(const std::string& string, const char delimiter) -> std::tuple<std::string, std::string> {
     std::string left, right;
 

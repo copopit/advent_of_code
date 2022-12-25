@@ -82,6 +82,16 @@ namespace VecOperations {
     }
 
     template <template<typename>typename Container, typename T>
+    auto stringToContainerT(const std::string& str) {
+        Container<T> newContainer;
+
+        for (auto& elem : str)
+            newContainer.emplace_back(elem);
+
+        return newContainer;
+    }
+
+    template <template<typename>typename Container, typename T>
     auto parseInputToContainer(const std::string& path, std::function<T(std::string)> f) {
         Container<T> data;
 
@@ -95,6 +105,13 @@ namespace VecOperations {
         }
 
         return data;
+    }
+}
+
+namespace Cast {
+    template <typename T>
+    auto cto(const char c) -> T {
+        return T(c - '0');
     }
 }
 
@@ -114,6 +131,7 @@ auto printContainer(T container) {
 }
 
 auto readInputToStringVector(const std::string& path) -> std::vector<std::string>;
+auto split(const std::string& string, const std::string& delimiter) -> std::tuple<std::string, std::string>;
 auto splitString(const std::string& string, char delimiter) -> std::tuple<std::string, std::string>;
 
 #endif //UTILS_LIBRARY_H
