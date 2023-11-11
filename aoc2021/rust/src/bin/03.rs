@@ -8,15 +8,15 @@ fn str_input_to_binary_u32_vec(input: &str) -> Vec<u32> {
 pub fn part_one(input: &str) -> Option<u32> {
     let bitlen = input.chars().take_while(|c| *c != '\n').count() as u32 - 1;
     let inp = str_input_to_binary_u32_vec(input);
-    let mut gamma: u32 = 0b0;
     let mask: u32 = (1 << (bitlen + 1)) - 1; // 0b1111 1111 1111
 
-    for pos in (0..=bitlen).rev() {
-        let ones = inp.iter().filter(|&&b| b & 1 << pos > 0).count();
-        if ones >= inp.len() / 2 {
-            gamma |= 1 << pos;
+    let gamma = (0..=bitlen).rev().fold(0, |acc: u32, pos| {
+        if inp.iter().filter(|&&b| b & 1 << pos > 0).count() >= inp.len() / 2 {
+            acc | 1 << pos
+        } else {
+            acc
         }
-    }
+    });
 
     Some(gamma * (mask ^ gamma))
 }
