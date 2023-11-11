@@ -122,10 +122,10 @@ namespace Cast {
  * @return
  */
 template <typename T>
-auto printContainer(T container) {
+auto printContainer(T container, const std::string& split = ", ") {
     for (auto& i : container) {
         for (auto& j: i)
-            std::cout << j << ", ";
+            std::cout << j << split;
         std::cout << "\n";
     }
 }
