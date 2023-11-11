@@ -20,6 +20,9 @@ auto splitString(const std::string& string, const char delimiter) -> std::tuple<
 
     auto delim = string.find(delimiter);
 
+    if (delim == std::string::npos)
+        return std::tuple(string, "");
+
     left = string.substr(0, delim);
     right = string.substr(left.size()+1, string.size() - left.size());
 
