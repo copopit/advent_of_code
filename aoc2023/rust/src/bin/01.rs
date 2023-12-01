@@ -1,5 +1,4 @@
 advent_of_code::solution!(1);
-use regex::Regex;
 
 pub fn part_one(input: &str) -> Option<u32> {
     let total = input
