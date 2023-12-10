@@ -4,8 +4,10 @@ pub fn part_one(input: &str) -> Option<u32> {
     let tot = input
         .lines()
         .map(|line| {
-            let pos = line.chars().position(|c| c == ':').unwrap();
-            let numbers = line[pos + 1..]
+            let numbers = line
+                .split(": ")
+                .nth(1)
+                .unwrap()
                 .split(" | ")
                 .map(|nums| {
                     nums.split_whitespace()
@@ -29,7 +31,6 @@ pub fn part_one(input: &str) -> Option<u32> {
 
 #[derive(Debug)]
 struct Card {
-    index: usize,
     winning_numbers: usize,
     total: usize,
 }
@@ -37,10 +38,11 @@ struct Card {
 pub fn part_two(input: &str) -> Option<u32> {
     let mut cards = input
         .lines()
-        .enumerate()
-        .map(|(i, line)| {
-            let pos = line.chars().position(|c| c == ':').unwrap();
-            let numbers = line[pos + 2..]
+        .map(|line| {
+            let numbers = line
+                .split(": ")
+                .nth(1)
+                .unwrap()
                 .split(" | ")
                 .map(|nums| {
                     nums.split_whitespace()
@@ -51,7 +53,6 @@ pub fn part_two(input: &str) -> Option<u32> {
             let winning_numbers = numbers[1].iter().filter(|x| numbers[0].contains(x)).count();
 
             return Card {
-                index: i,
                 winning_numbers: winning_numbers,
                 total: 1,
             };
@@ -60,16 +61,15 @@ pub fn part_two(input: &str) -> Option<u32> {
 
     for i in 0..cards.len() {
         let Card {
-            index: c_i,
             winning_numbers: w_n,
             total: c_tot,
         } = cards[i];
         for _ in 0..c_tot {
             for j in 1..=w_n {
-                if c_i + j >= cards.len() {
+                if i + j >= cards.len() {
                     break;
                 }
-                cards[c_i + j].total += 1;
+                cards[i + j].total += 1;
             }
         }
     }
