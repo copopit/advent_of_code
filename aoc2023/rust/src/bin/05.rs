@@ -106,30 +106,43 @@ impl Seed {
         self.source >= map.source && self.source <= map.range + map.source
     }
 
+    fn overlapping_range(&self, map: &AlmonacMap) -> bool {
+        self.source <= map.source && self.source + self.range >= map.source
+            || self.source >= map.source && self.source <= map.source + map.range
+            || self.source <= map.source && self.source + self.range >= map.source + map.range
+    }
+
     fn full_range(&self) -> RangeInclusive<u64> {
         self.source..=self.source + self.range
     }
 
-    fn some_upperbound(&self, map: &AlmonacMap) -> Option<Seed> {
-        if self.source + self.range > map.range + map.source {
-            Some(Seed {
-                source: map.range + map.source + 1,
-                range: self.source + self.range - (map.range + map.source),
-            })
-        } else {
-            None
-        }
-    }
+    fn split_range(&self, map: &AlmonacMap) -> (Option<Seed>, Option<Seed>, Option<Seed>) {
+        let mut lower = None;
+        let mut upper = None;
+        let mut middle = None;
 
-    fn some_lowerbound(&self, map: &AlmonacMap) -> Option<Seed> {
-        if self.source < map.source && self.source + self.range > map.source {
-            Some(Seed {
+        if self.source < map.source {
+            lower = Some(Seed {
                 source: self.source,
                 range: map.source - self.source,
-            })
-        } else {
-            None
+            });
         }
+
+        if self.source >= map.source && self.source + self.range <= map.source + map.range {
+            middle = Some(Seed {
+                source: self.source,
+                range: self.range,
+            });
+        }
+
+        if self.source + self.range > map.source + map.range {
+            upper = Some(Seed {
+                source: map.source + map.range + 1,
+                range: self.source + self.range - (map.source + map.range),
+            });
+        }
+
+        (lower, middle, upper)
     }
 
     fn get_range(&self, map: &AlmonacMap) -> Seed {
@@ -161,10 +174,56 @@ impl Seed {
     }
 }
 
+fn smallest_range(seed: Seed, mappings: &Vec<Vec<AlmonacMap>>, it: usize) -> Seed {
+    if it >= mappings.len() {
+        seed
+    } else {
+        let (mut lower, mut middle, mut upper): (Option<Seed>, Option<Seed>, Option<Seed>) =
+            (None, None, None);
+        for m in mappings[it] {
+            if seed.overlapping_range(&m) {
+                let (l, m, u) = seed.split_range(&m);
+                if l.is_some() {
+                    match lower {
+                        Some(s) => {
+                            if l.as_ref().unwrap().source < s.source {
+                                lower = l;
+                            }
+                        }
+                        None => lower = Some(smallest_range(l.unwrap(), mappings, 0)),
+                    }
+                }
+                if m.is_some() {
+                    match middle {
+                        Some(s) => {
+                            if m.as_ref().unwrap().source < s.source {
+                                middle = m;
+                            }
+                        }
+                        None => middle = Some(smallest_range(m.unwrap(), mappings, 0)),
+                    }
+                }
+                if u.is_some() {
+                    match upper {
+                        Some(s) => {
+                            if u.as_ref().unwrap().source < s.source {
+                                upper = u;
+                            }
+                        }
+                        None => upper = Some(smallest_range(u.unwrap(), mappings, 0)),
+                    }
+                }
+            }
+        }
+
+        if lower.is_some() {}
+    }
+}
+
 pub fn part_two(input: &str) -> Option<u32> {
     let mut inp_iter = input.split("\n\n");
 
-    let mut seeds = inp_iter
+    let seeds = inp_iter
         .next()
         .unwrap()
         .split(": ")
