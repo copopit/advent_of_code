@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "fpK9AVAXR+U=",
+  "dgSpecHash": "JFVexudTzrw=",
   "success": true,
-  "projectFilePath": "D:\\Programmering\\AdventOfCode\\advent_of_code\\aoc2024\\f#\\f#.fsproj",
+  "projectFilePath": "/home/joachim/dev/advent_of_code/aoc2024/f#/f#.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\joach\\.nuget\\packages\\fsharp.core\\9.0.100\\fsharp.core.9.0.100.nupkg.sha512"
+    "/home/joachim/.nuget/packages/fsharp.core/8.0.403/fsharp.core.8.0.403.nupkg.sha512"
   ],
   "logs": []
 }

@@ -11,15 +11,21 @@ let example =
 let getInput = System.IO.File.ReadAllLines "./Inputs/day02.txt"
 
 let handleSubArray (subArray: int[]) =
+    let initial = subArray[0] - subArray[1]
+    let isDescending = if initial < 0 then true else false
+
     subArray
     |> Array.windowed 2
     |> Array.fold
         (fun (acc1, isDescending) window ->
-            match window with
-            | [| a; b |] when a - b >= -3 && a - b <= 0 -> (true, true)
-            | [| a; b |] when a - b >= 0 && a - b <= 3 -> (true, false)
+            let result = window[0] - window[1]
+
+            match result with
+            | x when x < 0 && (isDescending = None || isDescending = Some true) -> (true, Some true)
+            | x when x > 0 && (isDescending = None || isDescending = Some false) -> (true, Some false)
             | _ -> (acc1, isDescending))
-        (true, false)
+        (false, None)
+    |> fst
 
 let part1 () : Option<int> =
     // let a =
@@ -27,6 +33,8 @@ let part1 () : Option<int> =
     //     |> Array.map (fun x -> x.Split(" ") |> Array.map int)
     //     |> Array.mapi (fun i x -> if i < )
     //     |> Array.sum
+    None
+
 let part2 () : Option<int> = None
 
 let solve () = (part1, part2)

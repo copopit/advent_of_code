@@ -1,31 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programmering\\AdventOfCode\\advent_of_code\\aoc2024\\f#\\f#.fsproj": {}
+    "/home/joachim/dev/advent_of_code/aoc2024/f#/f#.fsproj": {}
   },
   "projects": {
-    "D:\\Programmering\\AdventOfCode\\advent_of_code\\aoc2024\\f#\\f#.fsproj": {
+    "/home/joachim/dev/advent_of_code/aoc2024/f#/f#.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programmering\\AdventOfCode\\advent_of_code\\aoc2024\\f#\\f#.fsproj",
+        "projectUniqueName": "/home/joachim/dev/advent_of_code/aoc2024/f#/f#.fsproj",
         "projectName": "f#",
-        "projectPath": "D:\\Programmering\\AdventOfCode\\advent_of_code\\aoc2024\\f#\\f#.fsproj",
-        "packagesPath": "C:\\Users\\joach\\.nuget\\packages\\",
-        "outputPath": "D:\\Programmering\\AdventOfCode\\advent_of_code\\aoc2024\\f#\\obj\\",
+        "projectPath": "/home/joachim/dev/advent_of_code/aoc2024/f#/f#.fsproj",
+        "packagesPath": "/home/joachim/.nuget/packages/",
+        "outputPath": "/home/joachim/dev/advent_of_code/aoc2024/f#/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\joach\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/joachim/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\sdk\\9.0.101\\FSharp\\library-packs": {},
+          "/snap/dotnet-sdk/254/sdk/8.0.404/FSharp/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -33,17 +33,16 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[9.0.100, )",
+              "version": "[8.0.403, )",
               "generatePathProperty": true
             }
           },
@@ -63,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/254/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
